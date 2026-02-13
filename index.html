@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,40 +12,75 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: sans-serif;
             background-color: #ffeef8;
             text-align: center;
+            overflow: hidden; /* Para que el botón no cree barras de scroll al moverse */
         }
         .container {
-            max-width: 600px;
-            padding: 20px;
+            max-width: 500px;
+            padding: 30px;
             background: white;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        h1 { color: #d63384; line-height: 1.5; }
+        h1 { color: #d63384; font-size: 1.5rem; }
         .btn {
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 15px 25px;
+            font-size: 1.1rem;
             cursor: pointer;
             border: none;
             border-radius: 10px;
             margin: 10px;
-            transition: 0.3s;
+            font-weight: bold;
         }
         #btn-si { background-color: #ff4d6d; color: white; }
-        #btn-no { background-color: #6c757d; color: white; position: absolute; }
-        .hidden { display: none; }
-        #gif { width: 200px; margin-bottom: 20px; }
+        #btn-no { background-color: #6c757d; color: white; position: absolute; transition: 0.1s; }
+        .hidden { display: none !important; }
     </style>
 </head>
 <body>
 
     <div id="pantalla1" class="container">
         <h1>Hola peque, quiero que sepas que fuiste, eres y serás una de las personas más importantes de mi vida...</h1>
-        <p>Y creo que es el momento de...</p>
-        <button class="btn" id="btn-si" onclick="siguientePagina()">Continuar ❤️</button>
+        <p>Y creo que es el momento de que si...</p>
+        <button class="btn" id="btn-comenzar" onclick="mostrarSegundaPagina()">Continuar ❤️</button>
     </div>
 
     <div id="pantalla2" class="container hidden">
-        <img id="gif" src="
+        <h1>¿Quieres ser el amor de mi vida? 🌹</h1>
+        <div style="margin-top: 50px; height: 100px;">
+            <button class="btn" id="btn-si" onclick="ganaste()">SÍ 😍</button>
+            <button class="btn" id="btn-no" onmouseover="escapar()" onclick="escapar()">No 😢</button>
+        </div>
+    </div>
+
+    <div id="pantalla-final" class="container hidden">
+        <h1>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
+        <p>Eres lo mejor que me ha pasado.</p>
+    </div>
+
+    <script>
+        function mostrarSegundaPagina() {
+            // Quitamos la pantalla 1 y mostramos la 2
+            document.getElementById('pantalla1').classList.add('hidden');
+            document.getElementById('pantalla2').classList.remove('hidden');
+        }
+
+        function escapar() {
+            const btnNo = document.getElementById('btn-no');
+            // Calcula nuevas coordenadas aleatorias dentro de la ventana
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
+            
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+        }
+
+        function ganaste() {
+            document.getElementById('pantalla2').classList.add('hidden');
+            document.getElementById('pantalla-final').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
