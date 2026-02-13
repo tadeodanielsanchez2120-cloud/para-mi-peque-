@@ -2,97 +2,77 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi peque</title>
     <style>
         body {
             margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color: #ffdef2;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            background-color: #ffeef8;
+            font-family: sans-serif;
             overflow: hidden;
         }
-        .card {
+        .cuadro {
             background: white;
-            padding: 2rem;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 90%;
-            width: 400px;
-            z-index: 10;
+            width: 80%;
+            max-width: 400px;
         }
-        h1 { color: #d63384; font-size: 1.4rem; margin-bottom: 1.5rem; }
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
-            min-height: 50px;
-        }
+        .oculto { display: none !important; }
         button {
-            padding: 12px 25px;
+            padding: 15px 25px;
+            margin: 10px;
             border: none;
             border-radius: 10px;
-            font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
+            font-weight: bold;
         }
-        #btn-si { background-color: #ff4d6d; color: white; font-size: 1.1rem; }
-        #btn-no { 
-            background-color: #adb5bd; 
-            color: white; 
-            position: absolute; 
-            transition: all 0.1s ease;
-            z-index: 999;
-        }
-        .hidden { display: none !important; }
-        img { width: 150px; margin-bottom: 15px; }
+        #si { background-color: #ff4d6d; color: white; }
+        #no { background-color: #adb5bd; color: white; position: absolute; }
     </style>
 </head>
 <body>
 
-    <div id="p1" class="card">
-        <h1>Hola peque, quiero que sepas que fuiste, eres y serás una de las personas más importantes de mi vida...</h1>
-        <p>Y creo que es el momento de que si...</p>
-        <button id="btn-si" onclick="verPagina2()">Continuar ❤️</button>
+    <div id="p1" class="cuadro">
+        <h2 style="color: #d63384;">Hola peque, quiero que sepas que fuiste, eres y serás una de las personas más importantes de mi vida...</h2>
+        <button id="si" onclick="irSegunda()">Continuar ❤️</button>
     </div>
 
-    <div id="p2" class="card hidden">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycWswam9ueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
-        <h1>¿Quieres que estemos juntos por siempre?</h1>
-        <div class="btn-container">
-            <button id="btn-si-final" onclick="verFinal()" style="background-color: #ff4d6d; color: white;">SÍ 😍</button>
-            <button id="btn-no" onmouseover="muevete(this)" onclick="muevete(this)">No 😢</button>
+    <div id="p2" class="cuadro oculto">
+        <h2 style="color: #d63384;">¿Quieres ser mi San Valentín?</h2>
+        <div style="height: 100px;">
+            <button id="si" onclick="irFinal()">SÍ 😍</button>
+            <button id="no" onmouseover="mueveNo()" onclick="mueveNo()">No 😢</button>
         </div>
     </div>
 
-    <div id="final" class="card hidden">
-        <h1>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
-        <p>Eres lo mejor del mundo mundial.</p>
+    <div id="p3" class="cuadro oculto">
+        <h2 style="color: #d63384;">¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h2>
     </div>
 
     <script>
-        function verPagina2() {
-            document.getElementById('p1').classList.add('hidden');
-            document.getElementById('p2').classList.remove('hidden');
+        function irSegunda() {
+            document.getElementById('p1').classList.add('oculto');
+            document.getElementById('p2').classList.remove('oculto');
         }
 
-        function muevete(btn) {
-            // Esto hace que el botón salte a cualquier lado de la pantalla
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+        function mueveNo() {
+            const btn = document.getElementById('no');
+            const x = Math.random() * (window.innerWidth - 100);
+            const y = Math.random() * (window.innerHeight - 50);
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
-        function verFinal() {
-            document.getElementById('p2').classList.add('hidden');
-            document.getElementById('final').classList.remove('hidden');
+        function irFinal() {
+            document.getElementById('p2').classList.add('oculto');
+            document.getElementById('p3').classList.remove('oculto');
         }
     </script>
 </body>
