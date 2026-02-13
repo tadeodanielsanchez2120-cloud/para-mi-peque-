@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi peque</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #ffeef8;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        h1 { color: #d63384; line-height: 1.5; }
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        #btn-si { background-color: #ff4d6d; color: white; }
+        #btn-no { background-color: #6c757d; color: white; position: absolute; }
+        .hidden { display: none; }
+        #gif { width: 200px; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="pantalla1" class="container">
+        <h1>Hola peque, quiero que sepas que fuiste, eres y serás una de las personas más importantes de mi vida...</h1>
+        <p>Y creo que es el momento de...</p>
+        <button class="btn" id="btn-si" onclick="siguientePagina()">Continuar ❤️</button>
+    </div>
+
+    <div id="pantalla2" class="container hidden">
+        <img id="gif" src="
