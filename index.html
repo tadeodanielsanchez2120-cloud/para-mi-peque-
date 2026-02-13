@@ -1,85 +1,98 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Para mi peque</title>
     <style>
         body {
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: sans-serif;
-            background-color: #ffeef8;
-            text-align: center;
-            overflow: hidden; /* Para que el botón no cree barras de scroll al moverse */
+            min-height: 100vh;
+            background-color: #ffdef2;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
         }
-        .container {
-            max-width: 500px;
-            padding: 30px;
+        .card {
             background: white;
+            padding: 2rem;
             border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            z-index: 10;
         }
-        h1 { color: #d63384; font-size: 1.5rem; }
-        .btn {
-            padding: 15px 25px;
-            font-size: 1.1rem;
-            cursor: pointer;
+        h1 { color: #d63384; font-size: 1.4rem; margin-bottom: 1.5rem; }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            min-height: 50px;
+        }
+        button {
+            padding: 12px 25px;
             border: none;
             border-radius: 10px;
-            margin: 10px;
             font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        #btn-si { background-color: #ff4d6d; color: white; }
-        #btn-no { background-color: #6c757d; color: white; position: absolute; transition: 0.1s; }
+        #btn-si { background-color: #ff4d6d; color: white; font-size: 1.1rem; }
+        #btn-no { 
+            background-color: #adb5bd; 
+            color: white; 
+            position: absolute; 
+            transition: all 0.1s ease;
+            z-index: 999;
+        }
         .hidden { display: none !important; }
+        img { width: 150px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
-    <div id="pantalla1" class="container">
+    <div id="p1" class="card">
         <h1>Hola peque, quiero que sepas que fuiste, eres y serás una de las personas más importantes de mi vida...</h1>
         <p>Y creo que es el momento de que si...</p>
-        <button class="btn" id="btn-comenzar" onclick="mostrarSegundaPagina()">Continuar ❤️</button>
+        <button id="btn-si" onclick="verPagina2()">Continuar ❤️</button>
     </div>
 
-    <div id="pantalla2" class="container hidden">
-        <h1>¿Quieres ser el amor de mi vida? 🌹</h1>
-        <div style="margin-top: 50px; height: 100px;">
-            <button class="btn" id="btn-si" onclick="ganaste()">SÍ 😍</button>
-            <button class="btn" id="btn-no" onmouseover="escapar()" onclick="escapar()">No 😢</button>
+    <div id="p2" class="card hidden">
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHIycWswam9ueGZueGZueGZueGZueGZueGZueGZueGZueGZueGZueCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif">
+        <h1>¿Quieres que estemos juntos por siempre?</h1>
+        <div class="btn-container">
+            <button id="btn-si-final" onclick="verFinal()" style="background-color: #ff4d6d; color: white;">SÍ 😍</button>
+            <button id="btn-no" onmouseover="muevete(this)" onclick="muevete(this)">No 😢</button>
         </div>
     </div>
 
-    <div id="pantalla-final" class="container hidden">
+    <div id="final" class="card hidden">
         <h1>¡SABÍA QUE DIRÍAS QUE SÍ! ❤️</h1>
-        <p>Eres lo mejor que me ha pasado.</p>
+        <p>Eres lo mejor del mundo mundial.</p>
     </div>
 
     <script>
-        function mostrarSegundaPagina() {
-            // Quitamos la pantalla 1 y mostramos la 2
-            document.getElementById('pantalla1').classList.add('hidden');
-            document.getElementById('pantalla2').classList.remove('hidden');
+        function verPagina2() {
+            document.getElementById('p1').classList.add('hidden');
+            document.getElementById('p2').classList.remove('hidden');
         }
 
-        function escapar() {
-            const btnNo = document.getElementById('btn-no');
-            // Calcula nuevas coordenadas aleatorias dentro de la ventana
-            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
-            
-            btnNo.style.left = x + 'px';
-            btnNo.style.top = y + 'px';
+        function muevete(btn) {
+            // Esto hace que el botón salte a cualquier lado de la pantalla
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
         }
 
-        function ganaste() {
-            document.getElementById('pantalla2').classList.add('hidden');
-            document.getElementById('pantalla-final').classList.remove('hidden');
+        function verFinal() {
+            document.getElementById('p2').classList.add('hidden');
+            document.getElementById('final').classList.remove('hidden');
         }
     </script>
 </body>
